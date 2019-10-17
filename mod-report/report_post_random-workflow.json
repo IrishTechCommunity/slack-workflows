@@ -1,0 +1,85 @@
+{
+  "source_id": "271428014712045508",
+  "version": "1",
+  "workflow": {
+    "name": "Report Post random",
+    "blueprint": {
+      "version": "1",
+      "trigger": {
+        "type": "reaction_added",
+        "id": "e3777ae4-ac36-489d-978e-7100edae691d",
+        "config": {
+          "channel": {
+            "value": "C035FCDDD"
+          },
+          "reactions": [
+            {
+              "value": "mod-report"
+            }
+          ]
+        }
+      },
+      "steps": [
+        {
+          "type": "dialog",
+          "id": "1f6f9d45-3848-4138-b03e-20dab3273ada",
+          "config": {
+            "user": {
+              "ref": "e3777ae4-ac36-489d-978e-7100edae691d==user"
+            },
+            "dialog_title": "Flag Content",
+            "dialog_elements": [
+              {
+                "name": "005c36d8-274b-4e0b-8261-bb63d381f572",
+                "type": "select",
+                "label": "What is the issue?",
+                "options": [
+                  {
+                    "label": "NSFW content",
+                    "value": "NSFW content"
+                  },
+                  {
+                    "label": "Abuse",
+                    "value": "Abuse"
+                  },
+                  {
+                    "label": "Spam",
+                    "value": "Spam"
+                  },
+                  {
+                    "label": "Other",
+                    "value": "Other"
+                  }
+                ],
+                "optional": false,
+                "data_source": "static"
+              },
+              {
+                "name": "2eb73006-9e25-4b0e-b6cb-8b8beefefb4b",
+                "type": "text",
+                "label": "Other comments",
+                "subtype": "",
+                "optional": true,
+                "placeholder": ""
+              }
+            ],
+            "dialog_submit_label": "",
+            "delivery_button_label": "Add details",
+            "delivery_message_text": "Content report form - {{e3777ae4-ac36-489d-978e-7100edae691d==message_permalink}}\nPlease fill in a little bit of details about the content"
+          }
+        },
+        {
+          "type": "message",
+          "id": "a2b27c7e-3c5b-47df-80af-a1c28b36d5c2",
+          "config": {
+            "channel": {
+              "value": "G9AU3SCNM"
+            },
+            "has_button": false,
+            "message_text": "Content Reported in {{e3777ae4-ac36-489d-978e-7100edae691d==channel}} :  {{e3777ae4-ac36-489d-978e-7100edae691d==message_permalink}}\nType: {{1f6f9d45-3848-4138-b03e-20dab3273ada==005c36d8-274b-4e0b-8261-bb63d381f572==text}}\n{{1f6f9d45-3848-4138-b03e-20dab3273ada==2eb73006-9e25-4b0e-b6cb-8b8beefefb4b==text}}\n\nReporter: {{e3777ae4-ac36-489d-978e-7100edae691d==user}}"
+          }
+        }
+      ]
+    }
+  }
+}
